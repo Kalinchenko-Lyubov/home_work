@@ -33,4 +33,3 @@ def test_category_empty_product_list():
 def test_category_count(create_categories):
     """Проверка подсчета количества категорий."""
     assert Category.category_count == 3
-

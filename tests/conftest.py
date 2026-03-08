@@ -33,14 +33,16 @@ def cat_smartphone():
         ],
     )
 
+
 @pytest.fixture
 def create_categories():
     categories = [
         Category("Смартфоны", "Различные модели смартфонов", []),
         Category("Компьютеры", "Портативные ноутбуки и ПК", []),
-        Category("Планшеты", "Модели планшетов", [])
+        Category("Планшеты", "Модели планшетов", []),
     ]
     return categories
+
 
 @pytest.fixture(autouse=True)
 def reset_counters():
