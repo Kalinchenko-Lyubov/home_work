@@ -1,10 +1,3 @@
-class Product:
-    def __init__(self, name, price, stock):
-        self.name = name
-        self.price = price
-        self.stock = stock
-
-
 class Category:
     """Класс с описанием категории продуктов"""
 
@@ -27,12 +20,12 @@ class Category:
         Category.product_count += 1
 
     @property
-    def products_list(self) -> str:
+    def products(self) -> str:
         """Геттер для вывода списка товаров в виде строки"""
         if not self._products:
             return "Товаров нет"
         return "\n".join(
-            f"{p.name}, {p.price} руб. Остаток: {getattr(p, 'stock', 'нет данных')} шт."
+            f"{p.name}, {p.price} руб. Остаток: {getattr(p, 'quantity', 'нет данных')} шт."
             for p in self._products
 
         )
