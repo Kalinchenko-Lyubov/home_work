@@ -11,3 +11,11 @@ class Product:
         self.description = description
         self.price = price
         self.quantity = quantity
+
+    @classmethod
+    def new_product(cls, name, description, price, quantity):
+        """
+        Класс-метод для создания нового объекта Product.
+        Принимает параметры товара и возвращает созданный экземпляр.
+        """
+        return cls(name, description, price, quantity)
