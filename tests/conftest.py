@@ -1,7 +1,7 @@
 import pytest
 
 from src.category import Category
-from src.product import Product
+from src.product import Product, Smartphone, LawnGrass
 
 
 @pytest.fixture
@@ -39,6 +39,44 @@ def create_categories():
 
 @pytest.fixture(autouse=True)
 def reset_counters():
-    """Автоматически сбрасывает счётчики перед каждым тестом"""
     Category.category_count = 0
     Category.product_count = 0
+
+
+@pytest.fixture
+def smartphone_1():
+    return Smartphone(
+        name="iPhone 15",
+        description="Смартфон от Apple",
+        price=120000.0,
+        quantity=10,
+        efficiency="Высокая",
+        model="15",
+        memory=256,
+        color="Черный"
+    )
+
+@pytest.fixture
+def smartphone_2():
+     return Smartphone(
+        name="Samsung S23",
+        description="Флагман на Android",
+        price=95000.0,
+        quantity=15,
+        efficiency="Высокая",
+        model="S23",
+        memory=512,
+        color="Белый"
+    )
+
+@pytest.fixture
+def lawn_grass_1():
+    return LawnGrass(
+        name="Газон Универсальный",
+        description="Смесь трав для средней полосы",
+        price=450.0,
+        quantity=100,
+        country="Россия",
+        germination_period="10-14 дней",
+        color="Зеленый"
+    )

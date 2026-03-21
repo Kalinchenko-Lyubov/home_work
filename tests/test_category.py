@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category
 from src.product import Product
 
@@ -41,3 +43,18 @@ def test_category_str_representation(cat_smartphone):
     category_str = str(cat_smartphone)
     assert isinstance(category_str, str)
     assert category_str.startswith("Смартфоны")
+
+
+def test_add_product_with_invalid_type(cat_smartphone):
+    """
+    Тест проверяет, что метод add_product выбрасывает TypeError,
+    """
+    with pytest.raises(TypeError) as error_info:
+        cat_smartphone.add_product("Просто строка, а не товар")
+
+
+def test_add_product_with_number(cat_smartphone):
+    """
+    Тест проверяет, что метод add_product выбрасывает TypeError, если попытаться добавить число"""
+    with pytest.raises(TypeError):
+        cat_smartphone.add_product(12345)

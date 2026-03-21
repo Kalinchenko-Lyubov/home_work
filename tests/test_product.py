@@ -1,4 +1,6 @@
-from src.product import Product
+import pytest
+
+from src.product import Product, LawnGrass
 
 
 def test_product_init_1(product_1):
@@ -16,13 +18,11 @@ def test_product_init_2(product_2):
 
 
 def test_price_setter_valid_value(product_1):
-    """Тест: Сеттер должен устанавливать корректную цену"""
     product_1.price = 99999.99
     assert product_1.price == 99999.99
 
 
 def test_price_setter_negative_value(product_1, capsys):
-    """Тест: Сеттер должен игнорировать отрицательную цену. Проверяет, что цена не изменилась и сообщение выведено"""
     old_price = product_1.price
     product_1.price = -5000
     assert product_1.price == old_price
@@ -32,7 +32,6 @@ def test_price_setter_negative_value(product_1, capsys):
 
 
 def test_price_setter_zero_value(product_1, capsys):
-    """Тест: Сеттер должен игнорировать нулевую цену. Проверяет, что цена не изменилась и сообщение выведено"""
     old_price = product_1.price
     product_1.price = 0
     assert product_1.price == old_price
@@ -42,9 +41,7 @@ def test_price_setter_zero_value(product_1, capsys):
 
 
 def test_new_product_from_dict():
-    """Тест: Создание продукта из словаря"""
     data = {"name": "Test Phone", "description": "Just a test", "price": 100500.0, "quantity": 1}
-
     prod = Product.new_product(data)
 
     assert isinstance(prod, Product)
@@ -60,3 +57,53 @@ def test_product_addition():
     expected_value = (100000.0 * 2) + (1500.0 * 10)
     assert total_value == expected_value
     assert total_value == 215000.0
+
+
+def test_smartphone_init(smartphone_1):
+    assert smartphone_1.name == "iPhone 15"
+    assert smartphone_1.price == 120000.0
+    assert smartphone_1.quantity == 10
+    assert smartphone_1.efficiency == "Высокая"
+    assert smartphone_1.model == "15"
+    assert smartphone_1.memory == 256
+    assert smartphone_1.color == "Черный"
+
+
+def test_smartphone_addition(smartphone_1, smartphone_2):
+    total_value = smartphone_1 + smartphone_2
+    expected_value = (smartphone_1.price * smartphone_1.quantity) + (smartphone_2.price * smartphone_2.quantity)
+    assert total_value == expected_value
+
+
+def test_smartphone_addition_error(smartphone_1, lawn_grass_1):
+    with pytest.raises(TypeError, match="Нельзя складывать товары из разных категорий"):
+        smartphone_1 + lawn_grass_1
+
+
+def test_lawn_grass_init(lawn_grass_1):
+    assert lawn_grass_1.name == "Газон Универсальный"
+    assert lawn_grass_1.price == 450.0
+    assert lawn_grass_1.quantity == 100
+    assert lawn_grass_1.country == "Россия"
+    assert lawn_grass_1.germination_period == "10-14 дней"
+    assert lawn_grass_1.color == "Зеленый"
+
+
+def test_lawn_grass_addition(lawn_grass_1):
+    grass_2 = LawnGrass(
+        name="Газон Премиум",
+        description="Для футбольных полей",
+        price=700.0,
+        quantity=50,
+        country="Дания",
+        germination_period="7 дней",
+        color="Изумрудный"
+    )
+    total_value = lawn_grass_1 + grass_2
+    expected_value = (lawn_grass_1.price * lawn_grass_1.quantity) + (grass_2.price * grass_2.quantity)
+    assert total_value == expected_value
+
+
+def test_lawn_grass_addition_error(lawn_grass_1, smartphone_1):
+    with pytest.raises(TypeError, match="Нельзя складывать товары из разных категорий"):
+        lawn_grass_1 + smartphone_1
