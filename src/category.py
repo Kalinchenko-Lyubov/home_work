@@ -25,7 +25,5 @@ class Category:
         if not self._products:
             return "Товаров нет"
         return "\n".join(
-            f"{p.name}, {p.price} руб. Остаток: {getattr(p, 'quantity', 'нет данных')} шт."
-            for p in self._products
-
+            f"{p.name}, {p.price} руб. Остаток: {getattr(p, 'quantity', 'нет данных')} шт." for p in self._products
         )

@@ -43,12 +43,7 @@ def test_price_setter_zero_value(product_1, capsys):
 
 def test_new_product_from_dict():
     """Тест: Создание продукта из словаря"""
-    data = {
-        "name": "Test Phone",
-        "description": "Just a test",
-        "price": 100500.0,
-        "quantity": 1
-    }
+    data = {"name": "Test Phone", "description": "Just a test", "price": 100500.0, "quantity": 1}
 
     prod = Product.new_product(data)
 

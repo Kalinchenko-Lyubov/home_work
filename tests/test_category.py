@@ -5,7 +5,10 @@ from src.product import Product
 def test_category_init_and_products_getter(cat_smartphone):
     """Тест проверяет инициализацию и работу геттера products"""
     assert cat_smartphone.name == "Смартфоны"
-    assert cat_smartphone.description == "Смартфоны - средство не только коммуникации, но и получение дополнительных функций для удобства"
+    assert (
+        cat_smartphone.description
+        == "Смартфоны - средство не только коммуникации, но и получение дополнительных функций для удобства"
+    )
 
     result = cat_smartphone.products
     assert isinstance(result, str)

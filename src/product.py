@@ -12,18 +12,12 @@ class Product:
         self._price = price
         self.quantity = quantity
 
-
     @classmethod
     def new_product(cls, product_data: dict):
         """
         Класс-метод для создания нового объекта Product из словаря.
         """
-        return cls(
-            product_data["name"],
-            product_data["description"],
-            product_data["price"],
-            product_data["quantity"]
-        )
+        return cls(product_data["name"], product_data["description"], product_data["price"], product_data["quantity"])
 
     @property
     def price(self) -> float:
