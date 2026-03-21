@@ -14,6 +14,13 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self._products)
 
+    def __str__(self) -> str:
+        """
+        Возвращает строковое представление категории
+        """
+        total_quantity = sum(p.quantity for p in self._products)
+        return f"{self.name}, количество продуктов: {total_quantity} шт."
+
     def add_product(self, product):
         """Добавляет объект класса Product в приватный список товаров"""
         self._products.append(product)
@@ -24,6 +31,4 @@ class Category:
         """Геттер для вывода списка товаров в виде строки"""
         if not self._products:
             return "Товаров нет"
-        return "\n".join(
-            f"{p.name}, {p.price} руб. Остаток: {getattr(p, 'quantity', 'нет данных')} шт." for p in self._products
-        )
+        return "\n".join(str(p) for p in self._products)
