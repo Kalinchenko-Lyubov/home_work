@@ -51,3 +51,12 @@ def test_new_product_from_dict():
     assert prod.name == data["name"]
     assert prod.description == data["description"]
     assert prod.price == data["price"]
+
+
+def test_product_addition():
+    product_a = Product("Ноутбук", "Игровой", 100000.0, 2)
+    product_b = Product("Мышь", "Беспроводная", 1500.0, 10)
+    total_value = product_a + product_b
+    expected_value = (100000.0 * 2) + (1500.0 * 10)
+    assert total_value == expected_value
+    assert total_value == 215000.0

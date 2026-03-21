@@ -35,3 +35,9 @@ def test_add_product_updates_list_and_count(cat_smartphone):
 def test_class_counters(create_categories):
     """Тест проверяет работу классовых счетчиков"""
     assert Category.category_count == 3
+
+
+def test_category_str_representation(cat_smartphone):
+    category_str = str(cat_smartphone)
+    assert isinstance(category_str, str)
+    assert category_str.startswith("Смартфоны")
