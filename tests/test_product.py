@@ -1,6 +1,6 @@
 import pytest
 
-from src.product import Product, LawnGrass
+from src.product import LawnGrass, Product
 
 
 def test_product_init_1(product_1):
@@ -97,7 +97,7 @@ def test_lawn_grass_addition(lawn_grass_1):
         quantity=50,
         country="Дания",
         germination_period="7 дней",
-        color="Изумрудный"
+        color="Изумрудный",
     )
     total_value = lawn_grass_1 + grass_2
     expected_value = (lawn_grass_1.price * lawn_grass_1.quantity) + (grass_2.price * grass_2.quantity)

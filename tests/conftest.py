@@ -1,7 +1,7 @@
 import pytest
 
 from src.category import Category
-from src.product import Product, Smartphone, LawnGrass
+from src.product import LawnGrass, Product, Smartphone
 
 
 @pytest.fixture
@@ -53,12 +53,13 @@ def smartphone_1():
         efficiency="Высокая",
         model="15",
         memory=256,
-        color="Черный"
+        color="Черный",
     )
+
 
 @pytest.fixture
 def smartphone_2():
-     return Smartphone(
+    return Smartphone(
         name="Samsung S23",
         description="Флагман на Android",
         price=95000.0,
@@ -66,8 +67,9 @@ def smartphone_2():
         efficiency="Высокая",
         model="S23",
         memory=512,
-        color="Белый"
+        color="Белый",
     )
+
 
 @pytest.fixture
 def lawn_grass_1():
@@ -78,5 +80,5 @@ def lawn_grass_1():
         quantity=100,
         country="Россия",
         germination_period="10-14 дней",
-        color="Зеленый"
+        color="Зеленый",
     )

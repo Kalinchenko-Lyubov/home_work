@@ -49,7 +49,7 @@ def test_add_product_with_invalid_type(cat_smartphone):
     """
     Тест проверяет, что метод add_product выбрасывает TypeError,
     """
-    with pytest.raises(TypeError) as error_info:
+    with pytest.raises(TypeError):
         cat_smartphone.add_product("Просто строка, а не товар")
 
 

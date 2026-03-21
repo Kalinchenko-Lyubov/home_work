@@ -52,6 +52,7 @@ class Smartphone(Product):
     """
     Класс-наследник Product для категории 'Смартфон'.
     """
+
     efficiency: str
     model: str
     memory: int
@@ -64,10 +65,12 @@ class Smartphone(Product):
         self.memory = memory
         self.color = color
 
+
 class LawnGrass(Product):
     """
     Класс-наследник Product для категории 'Трава газонная'
     """
+
     country: str
     germination_period: str
     color: str
