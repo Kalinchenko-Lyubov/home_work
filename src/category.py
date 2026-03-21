@@ -1,3 +1,6 @@
+from src.product import Product
+
+
 class Category:
     """Класс с описанием категории продуктов"""
 
@@ -23,6 +26,8 @@ class Category:
 
     def add_product(self, product):
         """Добавляет объект класса Product в приватный список товаров"""
+        if not isinstance(product, Product):
+            raise TypeError("В категорию можно добавлять только объекты класса Product или его наследников.")
         self._products.append(product)
         Category.product_count += 1
 
