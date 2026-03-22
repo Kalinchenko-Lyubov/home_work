@@ -1,4 +1,33 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class Mixin:
+    """Миксин, который печатает информацию о классе и параметрах объекта"""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        print(f"Создан объект класса {self.__class__.__name__}: {repr(self)}")
+
+    def __repr__(self):
+        attrs = [f"{attr}={value!r}" for attr, value in vars(self).items()]
+        return f"{self.__class__.__name__}({', '.join(attrs)})"
+
+
+class BaseProduct(ABC):
+    """Абстрактный базовый класс для всех типов продуктов"""
+
+    @abstractmethod
+    def __str__(self) -> str:
+        """Абстрактный метод для строкового представления"""
+        pass
+
+    @abstractmethod
+    def __add__(self, other):
+        """Абстрактный метод для сложения двух продуктов"""
+        pass
+
+
+class Product(Mixin, BaseProduct):
     """Класс описания продукта"""
 
     name: str

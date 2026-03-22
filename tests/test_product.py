@@ -107,3 +107,9 @@ def test_lawn_grass_addition(lawn_grass_1):
 def test_lawn_grass_addition_error(lawn_grass_1, smartphone_1):
     with pytest.raises(TypeError, match="Нельзя складывать товары из разных категорий"):
         lawn_grass_1 + smartphone_1
+
+
+def test_mixin_repr():
+    product = Product("Книга", "Описание", 500, 10)
+    expected_repr = "Product(name='Книга', description='Описание', _price=500, quantity=10)"
+    assert repr(product) == expected_repr, "Миксин не сформировал правильную строку!"
