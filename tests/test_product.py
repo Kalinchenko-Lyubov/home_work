@@ -115,8 +115,6 @@ def test_mixin_repr():
     assert repr(product) == expected_repr, "Миксин не сформировал правильную строку!"
 
 
-
-
 def test_create_product_with_zero_quantity_raises_error():
     """
     Тестирует создание товара с нулевым количеством
