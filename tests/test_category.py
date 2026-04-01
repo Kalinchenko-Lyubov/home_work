@@ -58,3 +58,21 @@ def test_add_product_with_number(cat_smartphone):
     Тест проверяет, что метод add_product выбрасывает TypeError, если попытаться добавить число"""
     with pytest.raises(TypeError):
         cat_smartphone.add_product(12345)
+
+
+def test_average_price_empty_category():
+    """
+    Тестирует вычисление среднего ценника для пустой категории
+    """
+    empty_category = Category("Пустая категория", "Категория без продуктов", [])
+    assert empty_category.middle_price() == 0
+
+
+def test_average_price_with_inherited_products(smartphone_2, lawn_grass_1):
+    """
+    Тестирует вычисление среднего ценника для категории с товарами-наследниками
+    """
+    mixed_category = Category("Разные товары", "Смесь товаров", [smartphone_2, lawn_grass_1])
+
+    # Среднее значение: (95000 + 450) / 2 = 47725
+    assert mixed_category.middle_price() == pytest.approx(47725.0)
